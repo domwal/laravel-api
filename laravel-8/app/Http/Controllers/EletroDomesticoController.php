@@ -61,7 +61,7 @@ class EletroDomesticoController extends Controller
     public function show($id)
     {
         // $rs = Eletrodomestico::findOrFail( $id );
-        $rs = Eletrodomestico::with('marca')->find($id);
+        $rs = Eletrodomestico::with('marca')->findOrFail($id);
         return new EletrodomesticoResource( $rs );
     }
 
