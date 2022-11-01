@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EletroDomesticoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,19 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+// List artigos
+Route::get('listar-eletro-domestico', [EletroDomesticoController::class, 'index']);
+
+// List single artigo
+Route::get('eletro-domestico/{id}', [EletroDomesticoController::class, 'show']);
+
+// Create new artigo
+Route::post('eletro-domestico', [EletroDomesticoController::class, 'store']);
+
+// Update artigo
+Route::put('eletro-domestico/{id}', [EletroDomesticoController::class, 'update']);
+
+// Delete artigo
+Route::delete('eletro-domestico/{id}', [EletroDomesticoController::class,'destroy']);
