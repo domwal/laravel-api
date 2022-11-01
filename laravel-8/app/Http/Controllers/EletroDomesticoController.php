@@ -85,7 +85,7 @@ class EletroDomesticoController extends Controller
      */
     public function update(EletroDomesticoRequest $request, $id)
     {
-        $eletrodomestico = Eletrodomestico::findOrFail( $request->id );
+        $eletrodomestico = Eletrodomestico::findOrFail( $id);
         $eletrodomestico->nome = $request->input('nome');
         $eletrodomestico->descricao = $request->input('descricao');
         $eletrodomestico->tensao = $request->input('tensao');
