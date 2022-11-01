@@ -91,6 +91,7 @@ class EletroDomesticoController extends Controller
         $eletrodomestico->tensao = $request->input('tensao');
         $eletrodomestico->preco = $request->input('preco');
         $eletrodomestico->cor = $request->input('cor');
+        $eletrodomestico->marca_id = $request->input('marca_id');
 
         if( $eletrodomestico->save() ){
           return new EletrodomesticoResource( $eletrodomestico );
