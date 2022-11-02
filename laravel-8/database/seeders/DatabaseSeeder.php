@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
     	DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
     	// marcas
-        $marcas = array_unique(['Eletrolux', 'Brastemp']);
+        $marcas = array_unique(['Eletrolux', 'Brastemp', 'Fischer', 'Samsung', 'LG']);
         $dados = [];
         foreach ($marcas as $nome) {
             $dados[] = [
