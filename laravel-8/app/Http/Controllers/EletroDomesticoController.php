@@ -22,7 +22,7 @@ class EletroDomesticoController extends Controller
 
     public function get()
     {
-        $rs = Eletrodomestico::orderBy('id', 'desc')->paginate(15);
+        $rs = Eletrodomestico::with(['marca'])->orderBy('id', 'desc')->paginate(15);
         return EletrodomesticoResource::collection($rs);
     }
 

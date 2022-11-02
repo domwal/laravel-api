@@ -24,6 +24,7 @@ class EletroDomestico extends JsonResource
             'preco' => $this->preco,
             'cor' => $this->cor,
             'marca_id' => $this->marca_id,
+            'marca' => $this->marca,
         ];
     }
 }

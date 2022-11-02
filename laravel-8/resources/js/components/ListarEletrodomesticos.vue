@@ -55,6 +55,7 @@
                 <h4 class="card-title">#{{ post.id }} - {{ post.nome }} - {{ post.tensao }}</h4>
                 <p class="card-text">Preço: R$ {{ formatPrice(post.preco) }}</p>
                 <p class="card-text">Cor: {{ post.cor }}</p>
+                <p class="card-text">Marca: {{ post.marca.nome }}</p>
                 <p class="card-text">{{ post.descricao }}</p>
 
                 <button type="button" @click="deletePost(post.id)" class="btn btn-secondary">Remover</button>
@@ -77,7 +78,8 @@
                     tensao: '',
                     preco: '',
                     cor: '',
-                    marca_id: ''
+                    marca_id: '',
+                    marca: ''
                 },
                 errors: null,
             };

@@ -5378,6 +5378,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -5392,7 +5393,8 @@ __webpack_require__.r(__webpack_exports__);
         tensao: '',
         preco: '',
         cor: '',
-        marca_id: ''
+        marca_id: '',
+        marca: ''
       },
       errors: null
     };
@@ -28636,6 +28638,10 @@ var render = function () {
             _vm._v(" "),
             _c("p", { staticClass: "card-text" }, [
               _vm._v(_vm._s(post.descricao)),
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "card-text" }, [
+              _vm._v(_vm._s(post.marca.nome)),
             ]),
             _vm._v(" "),
             _c(
