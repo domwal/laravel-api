@@ -43,7 +43,7 @@ class EletroDomesticoController extends Controller
         $eletrodomestico->nome = $request->input('nome');
         $eletrodomestico->descricao = $request->input('descricao');
         $eletrodomestico->tensao = $request->input('tensao');
-        $eletrodomestico->preco = $request->input('preco');
+        $eletrodomestico->preco = (float) str_replace(',', '.', $request->input('preco'));
         $eletrodomestico->cor = $request->input('cor');
         $eletrodomestico->marca_id = $request->input('marca_id');
 
