@@ -30,7 +30,7 @@ class EletroDomesticoRequest extends FormRequest
     public function validationData()
     {
         $dados = $this->request->all();
-        $dados['preco'] = str_replace(['.'], '', $dados['preco']);
+        $dados['preco'] = str_replace('.', '', $dados['preco']);
         return $dados;
     }
 

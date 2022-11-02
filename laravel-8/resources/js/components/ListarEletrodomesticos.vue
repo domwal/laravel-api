@@ -12,21 +12,27 @@
         </div>
         <form @submit.prevent="addPost" ref="refEletrodomesticosForm">
             <div class="form-group">
+                <label>Nome: </label>
                 <input type="text" class="form-control" placeholder="Nome" v-model="post.nome">
             </div>
+            <label>Descrição: </label>
             <div class="form-group">
                 <textarea class="form-control" placeholder="Descrição" v-model="post.descricao"></textarea>
             </div>
             <div class="form-group">
+                <label>Tensão: </label>
                 <input type="text" class="form-control" placeholder="Tensão" v-model="post.tensao">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Preço" v-model="post.preco">
+                <label>Preço: </label>
+                <input type="text" class="form-control" v-model.lazy="preco" v-money="money" v-model="post.preco" />
             </div>
             <div class="form-group">
+                <label>Cor: </label>
                 <input type="text" class="form-control" placeholder="Cor" v-model="post.cor">
             </div>
             <div class="form-group">
+                <label>Marca: </label>
                 <select class="form-control" id="marca_id" name="marca_id" v-model="post.marca_id">
                     <option value="">-- SELECIONE --</option>
                     <option v-for="marca in marcas" :value="marca.id">
@@ -34,7 +40,9 @@
                     </option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-success">Salvar</button>
+            <p>
+                <button type="submit" class="btn btn-success">Salvar</button>
+            </p>
         </form>
 
         <nav>
@@ -65,6 +73,8 @@
 </template>
 
 <script>
+    import {VMoney} from 'v-money'
+
     export default {
         data() {
             return {
@@ -81,9 +91,18 @@
                     marca_id: '',
                     marca: ''
                 },
+                money: {
+                    decimal: ',',
+                    thousands: '.',
+                    prefix: '',
+                    suffix: '',
+                    precision: 2,
+                    masked: false /* doesn't work with directive */
+                },
                 errors: null,
             };
         },
+        directives: {money: VMoney},
 
         created() {
             this.getPosts();

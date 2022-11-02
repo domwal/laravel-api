@@ -8,7 +8,11 @@ require('./bootstrap');
 
 window.Vue = require('vue').default;
 
+import Vue from 'vue'
+import money from 'v-money'
 
+// register directive v-money and component <money>
+Vue.use(money, {precision: 4})
 
 /**
  * The following block of code may be used to automatically register your
