@@ -25,7 +25,7 @@
             </div>
             <div class="form-group">
                 <label>Preço: </label>
-                <input type="text" class="form-control" v-model.lazy="preco" v-money="money" v-model="post.preco" />
+                <input type="text" class="form-control" v-model.lazy="post.preco" v-money="money" v-model="post.preco" />
             </div>
             <div class="form-group">
                 <label>Cor: </label>

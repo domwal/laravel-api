@@ -28506,8 +28506,8 @@ var render = function () {
                 {
                   name: "model",
                   rawName: "v-model.lazy",
-                  value: _vm.preco,
-                  expression: "preco",
+                  value: _vm.post.preco,
+                  expression: "post.preco",
                   modifiers: { lazy: true },
                 },
                 {
@@ -28525,10 +28525,10 @@ var render = function () {
               ],
               staticClass: "form-control",
               attrs: { type: "text" },
-              domProps: { value: _vm.preco, value: _vm.post.preco },
+              domProps: { value: _vm.post.preco, value: _vm.post.preco },
               on: {
                 change: function ($event) {
-                  _vm.preco = $event.target.value
+                  return _vm.$set(_vm.post, "preco", $event.target.value)
                 },
                 input: function ($event) {
                   if ($event.target.composing) {
