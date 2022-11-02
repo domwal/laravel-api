@@ -56,6 +56,8 @@
                 <p class="card-text">Preço: R$ {{ formatPrice(post.preco) }}</p>
                 <p class="card-text">Cor: {{ post.cor }}</p>
                 <p class="card-text">{{ post.descricao }}</p>
+
+                <button type="button" @click="deletePost(post.id)" class="btn btn-secondary">Remover</button>
             </div>
         </div>
     </div>
@@ -155,6 +157,23 @@
                 Object.keys(this.post).forEach(function(key,index) {
                     self.post[key] = '';
                 });
+            },
+
+            deletePost(id) {
+                fetch('api/eletro-domestico/' + id, {
+                    method: 'delete'
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success == false) {
+                            alert('Falha ao remover o Registro.');
+                        }
+                        else {
+                            alert('Registro removido com sucesso.');
+                            this.getPosts();
+                        }
+                    })
+                    .catch(err => console.log(err));
             },
 
 

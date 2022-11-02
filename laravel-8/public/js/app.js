@@ -5376,6 +5376,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -5467,6 +5469,23 @@ __webpack_require__.r(__webpack_exports__);
       var self = this;
       Object.keys(this.post).forEach(function (key, index) {
         self.post[key] = '';
+      });
+    },
+    deletePost: function deletePost(id) {
+      var _this4 = this;
+      fetch('api/eletro-domestico/' + id, {
+        method: 'delete'
+      }).then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        if (data.success == false) {
+          alert('Falha ao remover o Registro.');
+        } else {
+          alert('Registro removido com sucesso.');
+          _this4.getPosts();
+        }
+      })["catch"](function (err) {
+        return console.log(err);
       });
     }
   }
@@ -28618,6 +28637,20 @@ var render = function () {
             _c("p", { staticClass: "card-text" }, [
               _vm._v(_vm._s(post.descricao)),
             ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-secondary",
+                attrs: { type: "button" },
+                on: {
+                  click: function ($event) {
+                    return _vm.deletePost(post.id)
+                  },
+                },
+              },
+              [_vm._v("Remover")]
+            ),
           ]),
         ])
       }),
