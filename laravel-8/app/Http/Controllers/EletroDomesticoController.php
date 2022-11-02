@@ -17,8 +17,19 @@ class EletroDomesticoController extends Controller
      */
     public function index()
     {
-        $rs = Eletrodomestico::paginate(15);
+        return view('eletrodomesticos');
+    }
+
+    public function get()
+    {
+        $rs = Eletrodomestico::orderBy('id', 'desc')->paginate(15);
         return EletrodomesticoResource::collection($rs);
+    }
+
+    public function getMarcas()
+    {
+        $rs = \DB::table('marcas')->select('id','nome', 'slug')->orderBy('nome', 'asc')->get();
+        return response()->json(['data' => $rs]);
     }
 
     /**
