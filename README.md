@@ -1,4 +1,4 @@
-# Teste Desenvolvedor Fullstack (PHP)
+# Teste API Laravel (PHP)
 
 ## Requerimentos
 - xampp 7.4
