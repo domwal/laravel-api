@@ -29,7 +29,9 @@ class EletroDomesticoRequest extends FormRequest
 
     public function validationData()
     {
-        return $this->request->all();
+        $dados = $this->request->all();
+        $dados['preco'] = str_replace(['.'], '', $dados['preco']);
+        return $dados;
     }
 
     protected function prepareForValidation() 
@@ -59,7 +61,7 @@ class EletroDomesticoRequest extends FormRequest
             'tensao' => 'required|max:255',
             'descricao' => 'required|max:255',
             'cor' => 'required|max:255',
-            'preco' => 'required|',
+            'preco' => 'required|regex:/^\d+(\,\d{1,2})?$/',
         ];
 
         // validacao apenas para update
@@ -85,7 +87,7 @@ class EletroDomesticoRequest extends FormRequest
             'required' => 'Campo :attribute é obrigatório',
             'exists' => ':attribute é Inválido',
             'gt' => ':attribute é Inválido',
-            'interger' => ':attribute é Inválido',
+            'integer' => ':attribute é Inválido',
             'max' => ':attribute é Inválido',
             'min' => ':attribute é Inválido',
             'regex' => ':attribute é Inválido',
@@ -100,6 +102,7 @@ class EletroDomesticoRequest extends FormRequest
             'tensao' => 'Tensão',
             'descricao' => 'Descrição',
             'cor' => 'Cor',
+            'preco' => 'Preço',
         ];
     }
 }
