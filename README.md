@@ -10,7 +10,7 @@
 ## Instalação
 
 - instalar o Xampp 7.4 para windows (https://www.apachefriends.org/download.html)
-- Clonar esse repositório em C:\xampp74\htdocs\laravel_test
+- Clonar esse repositório em C:\xampp74\htdocs
 - Criar um novo banco de dados no MySql : laravel_test (utf8mb4_unicode_ci)
 - Duplicar o arquivo ".env.example" para ".env"
 - Editar o arquivo .env e adicionar o nome do banco de dados na linha: DB_DATABASE=laravel e substituir por: DB_DATABASE=laravel_test
