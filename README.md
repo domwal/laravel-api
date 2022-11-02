@@ -11,14 +11,23 @@
 
 - instalar o Xampp 7.4 para windows (https://www.apachefriends.org/download.html)
 - Clonar esse repositório em C:\xampp74\htdocs
+````
+cd C:\xampp74\htdocs
+````
+````
+git clone https://github.com/domwal/laravel-test.git
+````
 - Criar um novo banco de dados no MySql : laravel_test (utf8mb4_unicode_ci)
 - Duplicar o arquivo ".env.example" para ".env"
+````
+cd laravel-test\laravel-8
+````
+````
+copy .env.example .env
+````
 - Editar o arquivo .env e adicionar o nome do banco de dados na linha: DB_DATABASE=laravel e substituir por: DB_DATABASE=laravel_test
 - Executar os seguintes comandos a seguir na linha de comando do windows
 ````
-cd C:\xampp74\htdocs
-git clone https://github.com/domwal/laravel-test.git
-cd laravel-test\laravel-8
 composer install
 php artisan key:generate
 php artisan migrate:fresh --seed
