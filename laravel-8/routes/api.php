@@ -21,7 +21,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 // List artigos
-Route::get('listar-eletro-domestico', [EletroDomesticoController::class, 'index']);
+Route::get('listar-eletro-domestico', [EletroDomesticoController::class, 'get']);
+
+// List marcas
+Route::get('listar-marcas', [EletroDomesticoController::class, 'getMarcas']);
 
 // List single artigo
 Route::get('eletro-domestico/{id}', [EletroDomesticoController::class, 'show']);
