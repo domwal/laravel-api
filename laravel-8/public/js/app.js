@@ -5510,6 +5510,7 @@ __webpack_require__.r(__webpack_exports__);
       this.post.id = null;
       this.post.post_id = null;
       this.btn_submit.text = this.btn_submit.inserir;
+      this.errors = null;
     },
     deletePost: function deletePost(id) {
       var _this4 = this;
@@ -5540,6 +5541,7 @@ __webpack_require__.r(__webpack_exports__);
       this.post.marca_id = post.marca_id;
       this.post.marca = post.marca;
       this.btn_submit.text = this.btn_submit.atualizar;
+      this.errors = null;
       this.scrollToTop();
     },
     scrollToTop: function scrollToTop() {

@@ -194,6 +194,7 @@
                 this.post.id = null;
                 this.post.post_id = null;
                 this.btn_submit.text = this.btn_submit.inserir;
+                this.errors = null;
             },
 
             deletePost(id) {
@@ -226,6 +227,7 @@
                 this.post.marca = post.marca;
 
                 this.btn_submit.text = this.btn_submit.atualizar;
+                this.errors = null;
                 this.scrollToTop();
             },
 
