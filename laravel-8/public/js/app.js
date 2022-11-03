@@ -5389,6 +5389,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -5416,7 +5419,14 @@ __webpack_require__.r(__webpack_exports__);
         masked: false /* doesn't work with directive */
       },
 
-      errors: null
+      errors: null,
+      update: false,
+      post_id: '',
+      btn_submit: {
+        inserir: 'Inserir Novo',
+        atualizar: 'Atualizar',
+        text: 'Inserir Novo'
+      }
     };
   },
   directives: {
@@ -5467,8 +5477,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     addPost: function addPost() {
       var _this3 = this;
-      fetch('api/eletro-domestico', {
-        method: 'post',
+      var apidx = this.update === false ? 'api/eletro-domestico' : 'api/eletro-domestico/' + this.post.post_id;
+      fetch(apidx, {
+        method: this.update === false ? 'post' : 'put',
         body: JSON.stringify(this.post),
         headers: {
           'content-type': 'application/json'
@@ -5495,6 +5506,10 @@ __webpack_require__.r(__webpack_exports__);
       Object.keys(this.post).forEach(function (key, index) {
         self.post[key] = '';
       });
+      this.update = false;
+      this.post.id = null;
+      this.post.post_id = null;
+      this.btn_submit.text = this.btn_submit.inserir;
     },
     deletePost: function deletePost(id) {
       var _this4 = this;
@@ -5507,11 +5522,28 @@ __webpack_require__.r(__webpack_exports__);
           alert('Falha ao remover o Registro.');
         } else {
           alert('Registro removido com sucesso.');
+          _this4.resetForm();
           _this4.getPosts();
         }
       })["catch"](function (err) {
         return console.log(err);
       });
+    },
+    editPost: function editPost(post) {
+      this.update = true;
+      this.post.post_id = post.id;
+      this.post.nome = post.nome;
+      this.post.descricao = post.descricao;
+      this.post.tensao = post.tensao;
+      this.post.preco = post.preco;
+      this.post.cor = post.cor;
+      this.post.marca_id = post.marca_id;
+      this.post.marca = post.marca;
+      this.btn_submit.text = this.btn_submit.atualizar;
+      this.scrollToTop();
+    },
+    scrollToTop: function scrollToTop() {
+      window.scrollTo(0, 0);
     }
   }
 });
@@ -28370,6 +28402,8 @@ var render = function () {
   return _c(
     "div",
     [
+      _c("h1", [_vm._v("Eletrodomésticos")]),
+      _vm._v(" "),
       _vm.errors
         ? _c(
             "div",
@@ -28619,7 +28653,27 @@ var render = function () {
             ),
           ]),
           _vm._v(" "),
-          _vm._m(0),
+          _c("p", [
+            _c(
+              "button",
+              { staticClass: "btn btn-success", attrs: { type: "submit" } },
+              [_vm._v(_vm._s(_vm.btn_submit.text))]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-warning",
+                on: {
+                  click: function ($event) {
+                    $event.preventDefault()
+                    return _vm.resetForm()
+                  },
+                },
+              },
+              [_vm._v("Cancelar")]
+            ),
+          ]),
         ]
       ),
       _vm._v(" "),
@@ -28726,6 +28780,20 @@ var render = function () {
               },
               [_vm._v("Remover")]
             ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-success",
+                attrs: { type: "button" },
+                on: {
+                  click: function ($event) {
+                    return _vm.editPost(post)
+                  },
+                },
+              },
+              [_vm._v("Editar")]
+            ),
           ]),
         ])
       }),
@@ -28733,20 +28801,7 @@ var render = function () {
     2
   )
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", [
-      _c(
-        "button",
-        { staticClass: "btn btn-success", attrs: { type: "submit" } },
-        [_vm._v("Salvar")]
-      ),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

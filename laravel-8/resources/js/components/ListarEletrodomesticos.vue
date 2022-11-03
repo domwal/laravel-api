@@ -1,5 +1,6 @@
 <template>
     <div>
+        <h1>Eletrodomésticos</h1>
         <div v-if="errors" class="shadow-lg alert alert-danger" role="alert">
             <h4>Verifique os erros abaixo:</h4>
             <ul>
@@ -41,7 +42,8 @@
                 </select>
             </div>
             <p>
-                <button type="submit" class="btn btn-success">Salvar</button>
+                <button type="submit" class="btn btn-success">{{ btn_submit.text }}</button>
+                <button @click.prevent="resetForm()" class="btn btn-warning">Cancelar</button>
             </p>
         </form>
 
@@ -67,6 +69,7 @@
                 <p class="card-text">{{ post.descricao }}</p>
 
                 <button type="button" @click="deletePost(post.id)" class="btn btn-secondary">Remover</button>
+                <button type="button" @click="editPost(post)" class="btn btn-success">Editar</button>
             </div>
         </div>
     </div>
@@ -100,6 +103,13 @@
                     masked: false /* doesn't work with directive */
                 },
                 errors: null,
+                update: false,
+                post_id: '',
+                btn_submit: {
+                    inserir: 'Inserir Novo',
+                    atualizar: 'Atualizar',
+                    text: 'Inserir Novo',
+                }
             };
         },
         directives: {money: VMoney},
@@ -149,8 +159,9 @@
             },
 
             addPost() {
-                fetch('api/eletro-domestico', {
-                    method: 'post',
+                let apidx = this.update === false ? 'api/eletro-domestico' : 'api/eletro-domestico/' + this.post.post_id;
+                fetch(apidx, {
+                    method: this.update === false ? 'post' : 'put',
                     body: JSON.stringify(this.post),
                     headers: {
                         'content-type': 'application/json'
@@ -178,6 +189,11 @@
                 Object.keys(this.post).forEach(function(key,index) {
                     self.post[key] = '';
                 });
+
+                this.update = false;
+                this.post.id = null;
+                this.post.post_id = null;
+                this.btn_submit.text = this.btn_submit.inserir;
             },
 
             deletePost(id) {
@@ -191,10 +207,30 @@
                         }
                         else {
                             alert('Registro removido com sucesso.');
+                            this.resetForm();
                             this.getPosts();
                         }
                     })
                     .catch(err => console.log(err));
+            },
+
+            editPost(post) {
+                this.update = true;
+                this.post.post_id = post.id;
+                this.post.nome = post.nome;
+                this.post.descricao = post.descricao;
+                this.post.tensao = post.tensao;
+                this.post.preco = post.preco;
+                this.post.cor = post.cor;
+                this.post.marca_id = post.marca_id;
+                this.post.marca = post.marca;
+
+                this.btn_submit.text = this.btn_submit.atualizar;
+                this.scrollToTop();
+            },
+
+            scrollToTop() {
+                window.scrollTo(0,0);
             },
 
 
