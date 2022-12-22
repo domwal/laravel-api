@@ -1,4 +1,4 @@
-# Teste API Laravel (PHP)
+# Laravel API (PHP)
 
 ## Requerimentos
 - xampp 7.4
